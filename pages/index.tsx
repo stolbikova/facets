@@ -4,8 +4,8 @@ import { CheckboxTree } from "app/components/CheckboxTree";
 import { buildCategoryTree } from "app/utils/buildCategoryTree";
 import { findCategoryById } from "app/utils/findCategoryById";
 import { Category } from "app/types";
+import response from "app/mocks/response";
 
-import response from "./response";
 import Selected from "app/components/Selected";
 
 function App() {
