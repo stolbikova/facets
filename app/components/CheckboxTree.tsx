@@ -28,7 +28,7 @@ function CheckboxTree({
   };
 
   const handleCheckboxChange = (
-    event: ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>,
     categoryId: string
   ) => {
     event.stopPropagation(); // Stop event bubbling to prevent unwanted label clicks
@@ -36,6 +36,7 @@ function CheckboxTree({
   };
 
   const handleToggleExpand = (event: React.MouseEvent, categoryId: string) => {
+    event.preventDefault();
     event.stopPropagation(); // Prevent triggering checkbox changes
     toggleExpand(categoryId); // Only toggle expansion state
   };
