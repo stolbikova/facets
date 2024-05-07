@@ -15,10 +15,13 @@ function Selected({
   const getParentChain = (categoryId: string, chain: string[] = []): string => {
     const category = findCategoryById(categories, categoryId);
     if (category && category.parent !== "0") {
-      const parent = findCategoryById(categories, category.parent);
-      if (parent) {
-        chain.unshift(parent.name); // Prepend parent name to the chain
-        return getParentChain(parent.id, chain); // Recurse up the tree
+      let parent;
+      if (category.parent) {
+        parent = findCategoryById(categories, category.parent);
+        if (parent) {
+          chain.unshift(parent.name); // Prepend parent name to the chain
+          return getParentChain(parent.id, chain); // Recurse up the tree
+        }
       }
     }
     return chain.join(" > "); // Return the joined chain
