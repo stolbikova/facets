@@ -1,40 +1,45 @@
-import { useState } from "react";
-
+import React from "react";
 import { findCategoryById } from "app/utils/findCategoryById";
 import { Category } from "app/types";
 
+import styles from "./Selected.module.css";
+
 function Selected({
   categories,
-  onSelect,
+  selectedCategoryIds,
 }: {
   categories: Category[];
-  onSelect: () => void;
+  selectedCategoryIds: string[];
 }) {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-
-  const getAllChildIds = (category: Category, ids: string[] = []) => {
-    ids.push(category.id);
-    category.children?.forEach((child) => getAllChildIds(child, ids));
-    return ids;
-  };
-
-  const selectAllCategories = () => {
-    const allCategoryIds = categories.map((category) => category.id);
-    setSelectedCategories(allCategoryIds);
-    onSelect();
+  // Recursive function to fetch all parent names up to the root
+  const getParentChain = (categoryId: string, chain: string[] = []): string => {
+    const category = findCategoryById(categories, categoryId);
+    if (category && category.parent !== "0") {
+      const parent = findCategoryById(categories, category.parent);
+      if (parent) {
+        chain.unshift(parent.name); // Prepend parent name to the chain
+        return getParentChain(parent.id, chain); // Recurse up the tree
+      }
+    }
+    return chain.join(" > "); // Return the joined chain
   };
 
   return (
-    <div>
+    <div className={styles.selectedContainer}>
       <h2>Selected Categories</h2>
       <ul>
-        {selectedCategories.map((categoryId) => (
-          <li key={categoryId}>
-            {findCategoryById(categories, String(categoryId))?.name}
-          </li>
-        ))}
+        {selectedCategoryIds.map((categoryId) => {
+          const category = findCategoryById(categories, categoryId);
+          return category ? (
+            <li key={category.id}>
+              {getParentChain(category.id)}
+              {category.name
+                ? `${getParentChain(category.id) ? " > " : ""}${category.name}`
+                : ""}
+            </li>
+          ) : null;
+        })}
       </ul>
-      <button onClick={selectAllCategories}>Select All</button>
     </div>
   );
 }
