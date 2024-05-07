@@ -55,6 +55,7 @@ export function CheckboxTree({
         <label
           className={`${styles.label} ${isSelected ? styles.selected : ""}`}
           onClick={(event) => handleToggleExpand(event, category.id)}
+          htmlFor={`checkbox-${category.id}`}
         >
           {category.name}
         </label>
