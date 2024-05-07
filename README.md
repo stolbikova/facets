@@ -1,31 +1,25 @@
-# Next.js + Jest
+# Faceted Checkbox Tree
 
 This example shows how to configure Jest to work with Next.js.
 
-This includes Next.js' built-in support for Global CSS, CSS Modules and TypeScript. This example also shows how to use Jest with the App Router and React Server Components.
+UI checkbox tree representing the category hierarchy provided by the response.json data.
+The root category is `gender`, marked by the attribute `parent: "0"`.
 
-> **Note:** Since tests can be co-located alongside other files inside the App Router, we have placed those tests in `app/` to demonstrate this behavior (which is different than `pages/`). You can still place all tests in `__tests__` if you prefer.
+> **Note:**
 
-## Deploy your own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-jest&project-name=with-jest&repository-name=with-jest)
-
-## How to Use
-
-Quickly get started using [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/create-next-app#readme)!
-
-In your terminal, run the following command:
+## Install dependencies
 
 ```bash
-npx create-next-app --example with-jest with-jest-app
+npm install
 ```
 
-```bash
-yarn create next-app --example with-jest with-jest-app
-```
+## Run the server
+
+Server will be running on port 3000
+localhost://3000
 
 ```bash
-pnpm create next-app --example with-jest with-jest-app
+npx run dev
 ```
 
 ## Running Tests
