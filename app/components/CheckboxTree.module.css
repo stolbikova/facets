@@ -1,0 +1,41 @@
+.treeContainer {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .categoryItem {
+    margin-left: 20px;
+    cursor: pointer;
+  }
+  
+  .checkbox {
+    margin-right: 5px;
+  }
+  
+  .label {
+    user-select: none;
+  }
+  
+  .selected {
+    font-weight: bold;
+  }
+  
+  .expandToggle {
+    cursor: pointer;
+  }
+  
+  .arrow {
+    width: 15px;
+    height: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .arrow.up {
+    transform: rotate(180deg);
+  }
+
+  .arrowContainer {
+    margin: 0 5px;
+  }
