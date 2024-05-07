@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import Selected from "./Selected";
+import Selected from "app/components/Selected";
 
 const categories = [
   { id: "1", name: "Electronics", parent: "0" },

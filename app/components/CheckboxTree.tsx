@@ -11,7 +11,7 @@ interface CheckboxTreeProps {
   selectedCategories: string[];
 }
 
-export function CheckboxTree({
+function CheckboxTree({
   categories,
   onSelect,
   selectedCategories,
@@ -82,3 +82,5 @@ export function CheckboxTree({
     <div className={styles.treeContainer}>{categories.map(renderCategory)}</div>
   );
 }
+
+export default CheckboxTree;

@@ -19,7 +19,9 @@
     "paths": {
       "@/components/*": ["components/*"],
       "@/pages/*": ["pages/*"],
-      "@/styles/*": ["styles/*"]
+      "@/styles/*": ["styles/*"],
+      "@testing-library/jest-dom": ["node_modules/@testing-library/jest-dom/types"]
+    
     },
     "plugins": [
       {

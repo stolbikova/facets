@@ -1,5 +1,6 @@
 import { render, fireEvent, screen } from "@testing-library/react";
-import { CheckboxTree } from "./CheckboxTree";
+
+import CheckboxTree from "app/components/CheckboxTree";
 
 // Sample categories data
 const categories = [
@@ -24,7 +25,7 @@ test("checkbox changes and expansions react to user input", async () => {
   // Trigger expansion of 'Electronics'
   const electronicsLabel = getByText("Electronics");
   fireEvent.click(electronicsLabel);
-  expect(screen.getByText("Laptops")).not.toHaveClass("selected"); // Check visibility instead of selected state
+  expect(screen.getByText("Laptops")).not.toHaveClass("selected");
 
   // Select 'Laptops' by checking its checkbox
   const laptopsCheckbox = screen.getByLabelText("Laptops");

@@ -1,4 +1,4 @@
-import { buildCategoryTree } from "./buildCategoryTree";
+import { buildCategoryTree } from "app/utils/buildCategoryTree";
 
 describe("buildCategoryTree", () => {
   it("correctly builds a tree structure from a flat list of categories", () => {

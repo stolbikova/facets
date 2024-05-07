@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { CheckboxTree } from "app/components/CheckboxTree";
+import CheckboxTree from "app/components/CheckboxTree";
 import { buildCategoryTree } from "app/utils/buildCategoryTree";
 import { findCategoryById } from "app/utils/findCategoryById";
 import { Category } from "app/types";

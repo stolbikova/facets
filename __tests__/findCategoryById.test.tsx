@@ -1,5 +1,5 @@
-import { findCategoryById } from "./findCategoryById";
-import { Category } from "app/types"; // Ensure the Category type is correctly imported
+import { findCategoryById } from "app/utils/findCategoryById";
+import { Category } from "app/types";
 
 describe("findCategoryById", () => {
   const categories: Category[] = [
