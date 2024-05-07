@@ -1,7 +1,6 @@
 import React from "react";
 import { findCategoryById } from "app/utils/findCategoryById";
 import { Category } from "app/types";
-
 import styles from "./Selected.module.css";
 
 function Selected({
@@ -15,13 +14,12 @@ function Selected({
   const getParentChain = (categoryId: string, chain: string[] = []): string => {
     const category = findCategoryById(categories, categoryId);
     if (category && category.parent !== "0") {
-      let parent;
-      if (category.parent) {
-        parent = findCategoryById(categories, category.parent);
-        if (parent) {
-          chain.unshift(parent.name); // Prepend parent name to the chain
-          return getParentChain(parent.id, chain); // Recurse up the tree
-        }
+      let parent = category.parent
+        ? findCategoryById(categories, category.parent)
+        : null;
+      if (parent) {
+        chain.unshift(parent.name); // Prepend parent name to the chain
+        return getParentChain(parent.id, chain); // Recurse up the tree
       }
     }
     return chain.join(" > "); // Return the joined chain
@@ -33,14 +31,14 @@ function Selected({
       <ul>
         {selectedCategoryIds.map((categoryId) => {
           const category = findCategoryById(categories, categoryId);
-          return category ? (
-            <li key={category.id}>
-              {getParentChain(category.id)}
-              {category.name
-                ? `${getParentChain(category.id) ? " > " : ""}${category.name}`
-                : ""}
-            </li>
-          ) : null;
+          if (category) {
+            const parentChain = getParentChain(category.id);
+            const fullCategoryName = [parentChain, category.name]
+              .filter(Boolean)
+              .join(" > ");
+            return <li key={category.id}>{fullCategoryName}</li>;
+          }
+          return null;
         })}
       </ul>
     </div>

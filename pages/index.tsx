@@ -3,6 +3,7 @@ import { useState } from "react";
 import CheckboxTree from "app/components/CheckboxTree";
 import { buildCategoryTree } from "app/utils/buildCategoryTree";
 import { findCategoryById } from "app/utils/findCategoryById";
+import { getAllChildCategoryIds } from "app/utils/getAllChildIds";
 import { Category } from "app/types";
 import response from "app/mocks/response";
 import Selected from "app/components/Selected";
@@ -23,7 +24,7 @@ const getAllCategoryIds = (categories: Category[]) => {
 
 function App() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const categories = buildCategoryTree(response.data.categories);
+  const categories: Category[] = buildCategoryTree(response.data.categories);
 
   // Determine if all categories are selected
   const areAllSelected = () => {
@@ -41,24 +42,27 @@ function App() {
   };
 
   const handleCategorySelect = (categoryId: string) => {
-    const category = findCategoryById(categories, String(categoryId));
+    const category = findCategoryById(categories, categoryId);
     if (!category) return;
 
     setSelectedCategories((prevSelected) => {
       const selectedSet = new Set(prevSelected);
 
-      let allChildIds = category.children
-        ? getAllCategoryIds([category])
-        : [categoryId];
-      const allSelected = allChildIds.every((id) => selectedSet.has(id));
+      // Determine if we're adding or removing the category
+      const isCurrentlySelected = selectedSet.has(categoryId);
 
-      allChildIds.forEach((id) => {
-        if (allSelected) {
-          selectedSet.delete(id);
-        } else {
-          selectedSet.add(id);
-        }
-      });
+      // Fetch all child IDs
+      const childIds = getAllChildCategoryIds(categories, categoryId);
+
+      if (isCurrentlySelected) {
+        // Remove the category and its children from selection
+        selectedSet.delete(categoryId);
+        childIds.forEach((id) => selectedSet.delete(id));
+      } else {
+        // Add the category and its children to selection
+        selectedSet.add(categoryId);
+        childIds.forEach((id) => selectedSet.add(id));
+      }
 
       return Array.from(selectedSet);
     });
@@ -79,9 +83,7 @@ function App() {
           selectedCategories={selectedCategories}
         />
         <Selected
-          categories={categories.filter((cat) =>
-            selectedCategories.includes(cat.id)
-          )}
+          categories={categories}
           selectedCategoryIds={selectedCategories}
         />
       </div>
