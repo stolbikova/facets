@@ -1,7 +1,5 @@
 # Faceted Checkbox Tree
 
-This example shows how to configure Jest to work with Next.js.
-
 UI checkbox tree representing the category hierarchy provided by the response.json data.
 The root category is `gender`, marked by the attribute `parent: "0"`.
 

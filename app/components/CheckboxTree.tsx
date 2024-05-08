@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 
 import { Category } from "app/types";
 import Arrow from "app/icons/Arrow";
