@@ -10,7 +10,6 @@ const categories = [
 test("renders categories with their parent names", async () => {
   render(<Selected categories={categories} selectedCategoryIds={["2", "3"]} />);
 
-  // Use waitFor to handle asynchronous rendering
   await waitFor(() => {
     const listItem = screen.getByText(/Laptops/);
     expect(listItem).toBeInTheDocument();
