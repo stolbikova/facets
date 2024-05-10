@@ -1,5 +1,6 @@
 import { findCategoryById } from "app/utils/findCategoryById";
 import { Category } from "app/types";
+
 import styles from "./Selected.module.css";
 
 function Selected({
