@@ -14,7 +14,7 @@ exports[`renders homepage unchanged 1`] = `
         name="viewport"
       />
       <title>
-        Your Page Title Here
+        Category Tree
       </title>
     </head>
     <body>

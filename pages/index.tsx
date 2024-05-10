@@ -7,7 +7,6 @@ import { getAllChildCategoryIds } from "app/utils/getAllChildIds";
 import { Category } from "app/types";
 import response from "app/mocks/response";
 import Selected from "app/components/Selected";
-import Layout from "app/layout";
 
 import styles from "./index.module.css";
 
@@ -70,27 +69,25 @@ function App() {
   };
 
   return (
-    <Layout>
-      <div className={styles.appContainer}>
-        <button
-          className={styles.selectAllButton}
-          onClick={handleSelectAllToggle}
-        >
-          {areAllSelected() ? "Deselect All" : "Select All"}
-        </button>
-        <div className={styles.wrapContainer}>
-          <CheckboxTree
-            categories={categories}
-            onSelect={handleCategorySelect}
-            selectedCategories={selectedCategories}
-          />
-          <Selected
-            categories={categories}
-            selectedCategoryIds={selectedCategories}
-          />
-        </div>
+    <div className={styles.appContainer}>
+      <button
+        className={styles.selectAllButton}
+        onClick={handleSelectAllToggle}
+      >
+        {areAllSelected() ? "Deselect All" : "Select All"}
+      </button>
+      <div className={styles.wrapContainer}>
+        <CheckboxTree
+          categories={categories}
+          onSelect={handleCategorySelect}
+          selectedCategories={selectedCategories}
+        />
+        <Selected
+          categories={categories}
+          selectedCategoryIds={selectedCategories}
+        />
       </div>
-    </Layout>
+    </div>
   );
 }
 
